@@ -1,9 +1,3 @@
-# Running app
-library(leaflet)
-library(RColorBrewer)
-library(zoo)
-library(epitools)
-library(ggplot2)
 
 shinyUI(
   navbarPage("Cluster Explorer", id="nav",

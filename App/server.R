@@ -8,10 +8,13 @@ shinyServer(function(input, output, session) {
   })
   
 
-
-  
   output$res<-renderDataTable({
-    venues
+    if(exists("venues")){
+      venues
+    } else {
+      data.frame("Venues" = "No venues provided")
+    }
+          
   }, options= list(
     paging=F, searching=F,
     drawCallback=I("function(settings){document.getElementById('res').style.width='800px';}"))
@@ -29,7 +32,9 @@ shinyServer(function(input, output, session) {
   observe({
     datamap<-leafletProxy("datamap", data=cases)
     datamap %>% clearMarkers()
-    datamap %>% addMarkers(data=venues, lat=~lat, lng=~lon, layerId=~id, group="venues")   
+    if(exists("venues")){
+      datamap %>% addMarkers(data=venues, lat=~lat, lng=~lon, layerId=~id, group="venues")    
+    }
     datamap %>% addCircleMarkers(lng=~lon, lat=~lat, 
                                  fillColor=~"black", color="black", weight=1,radius=6, fillOpacity=1,
                                  layerId=~id, group="cases")
@@ -74,6 +79,7 @@ popContent<-function(ID){
   } else {
     selectedID <- venues[venues$id==ID,]
     content <- as.character(tagList(
+      tags$strong("ID"), selectedID$id, tags$br(),
       tags$strong("Name"), selectedID$name, tags$br(),
       tags$strong("Type"), selectedID$type, tags$br(),
       tags$strong("Hitscore"), round(selectedID$hitscore, 3), tags$br()

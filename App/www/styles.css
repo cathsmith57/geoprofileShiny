@@ -37,15 +37,6 @@ color: black;
 
 h1, h2, h3, h4 { font-weight: 400; }
 
-#controls1 {
-  /* Appearance */
-  background-color: white;
-  padding: 20px 20px 20px 20px;
-  opacity: 0.85;
-  border-color: #004359;
-  border-radius: 10px;
-  border-width: 5px; 
-}
 
 #tab-8006-4 {
   /* Appearance */
@@ -72,17 +63,7 @@ h1, h2, h3, h4 { font-weight: 400; }
   
 }
 
-#epiControls {
-  /* Appearance */
-  background-color: white;
-  padding: 20px 20px 20px 20px;
-  opacity: 0.85;
-  border-color: #004359;
-  border-radius: 10px;
-  border-width: 5px;
 
-  
-}
 
 
 /* Position and style citation */
@@ -152,26 +133,16 @@ h1, h2, h3, h4 { font-weight: 400; }
 #res{
 position: absolute;
   top: 50px;
-  left: 450px;
+  left: 50px;
   color: black;
 
 }
 
-#epi{
-position: absolute;
-  top: 50px;
-  left: 450px;
 
-}
 
 #datamap{
 color: black;
  overflow-y:scroll;
 }
-
-#dateRange{
-color: black;
-}
-
 
 
