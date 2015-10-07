@@ -26,20 +26,24 @@ shinyServer(function(input, output, session) {
     leaflet() %>% 
       addTiles() %>%
 #      addProviderTiles("OpenStreetMap.BlackAndWhite") %>%
-      setView(lat=median(cases$lat),lng=median(cases$lon), zoom=10, options=list(maxZoom=11))      
+      setView(lat=median(cases$lat),lng=median(cases$lon), zoom=10, options=list(maxZoom=11))
   })
   
   observe({
     datamap<-leafletProxy("datamap", data=cases)
+
     datamap %>% clearMarkers()
     if(exists("venues")){
       datamap %>% addMarkers(data=venues, lat=~lat, lng=~lon, layerId=~id, group="venues")    
     }
+
     datamap %>% addCircleMarkers(lng=~lon, lat=~lat, 
                                  fillColor=~"black", color="black", weight=1,radius=6, fillOpacity=1,
                                  layerId=~id, group="cases")
     datamap %>% clearGroup("geoprofile")
-    datamap %>% addRasterImage(gp, opacity=0.3, project=F, group="geoprofile", colors=heat.colors(20))    
+
+    datamap %>% addRasterImage(gp, opacity=0.3, project=F, group="geoprofile", colors=heat.colors(20))  
+
     
     if(input$disGP==T){
       datamap %>% showGroup("geoprofile")

@@ -1,6 +1,6 @@
 
 shinyUI(
-  navbarPage("Cluster Explorer", id="nav",
+  navbarPage("Geoprofile", id="nav",
                    tabPanel("Interactive map", 
                             div(class="outer",
                                 tags$head(                                  
